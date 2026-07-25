@@ -32,7 +32,16 @@
   .meta { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
     margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--hair);
     color: var(--faint); font-size: 13px; }
-  .progress { color: var(--amber-deep); font-weight: 600; }
+  .byline { font-size: 15px; color: var(--muted); text-decoration: none; }
+  .byline:hover { color: var(--amber-deep); text-decoration: underline; }
+
+  .site-foot {
+    max-width: 620px; margin: 40px auto 0; padding-top: 22px;
+    border-top: 1px solid var(--hair);
+    color: var(--muted); font-size: 12.5px; line-height: 1.7; text-align: center;
+  }
+  .site-foot a { color: var(--amber-deep); text-decoration: none; }
+  .site-foot a:hover { text-decoration: underline; }
 
   /* fixed 5-wide rectangle (5 x 8 = 40) */
   .grid { display: grid; gap: 14px; margin-top: 26px; grid-template-columns: repeat(5, 1fr); }
@@ -131,12 +140,15 @@
     <h1>Forty things worth math-ing on</h1>
     <p class="blurb">Real products, real prices [2020], real questions &mdash; each one a small bite of math built around something you'd actually find on a shelf. Click any tile to open it up.</p>
     <div class="meta">
-      <span class="progress" id="progress">&mdash;</span>
-      <span>&middot;</span>
-      <span>Fawn Nguyen</span>
+      <a class="byline" href="https://fawnnguyen.substack.com/" target="_blank" rel="noopener">Fawn Nguyen</a>
     </div>
   </header>
   <main class="grid" id="grid"></main>
+
+  <footer class="site-foot">
+    Copyright &copy; 2026 Chewable Math by <a href="https://fawnnguyen.substack.com/" target="_blank" rel="noopener">Fawn Nguyen</a>.<br>
+    This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 International License</a>.
+  </footer>
 </div>
 
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
@@ -619,8 +631,6 @@ function heroImgFail(img) { const ph = document.createElement('div'); ph.classNa
   ph.innerHTML = '<span class="ph-icon">\u25A2</span><span class="ph-txt">image goes here</span>'; img.replaceWith(ph); }
 
 const grid = document.getElementById('grid');
-const filledCount = Object.keys(ENTRIES).filter(isFilled).length;
-document.getElementById('progress').textContent = filledCount + ' of ' + TOTAL + ' filled in';
 
 for (let n = 1; n <= TOTAL; n++) {
   const e = ENTRIES[n];
